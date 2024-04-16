@@ -1,0 +1,209 @@
+/home: home directory for all users.
+
+/root: home directory for root user
+
+root user: root user is the admin for the o.s which has access to all files.
+
+/boot: all bootable files rhti hai.
+
+/etc: *it is the directory that contains all configuration files.
+
+/usr: by default all the softwares are installed here
+
+/bin: it contains command used by all users including root users
+
+/sbin: command used by only root user.
+
+/opt: optional application software package.
+
+/dev: essentials device files...
+
+
+				--------------------- how to create a file --------------
+
+1) touch
+2) cat 
+3) vi 
+4) nano
+
+a) CAT:
+
+it is used to concatinate two seperate files into one single files.
+
+it has :
+
+create a file
+copy a file
+'concatenate a file
+tac : to see content from bottom to top.
+
+
+
+
+
+				----- TOUCH -----------
+
+touch file1 file2 file3
+
+touch -a file1 (change the access time)
+touch -m file4 (change modified time)
+
+
+
+				---------------- Vi editor ------------------
+
+A programer text editor
+
+
+					--------------- create a directory ------------------
+mkdir folder1 folder 2
+
+mkdir -p folder1/folder2
+
+					----- some more command-----
+
+yum install httpd
+
+yum is basically used for linux for...
+for ubuntu version:
+
+apt-get install httpd
+sudo su: to give root permission
+
+
+				----------------- to create auser in linux --------------------	
+
+
+-> useradd shubham
+-> cat /etc/passwd
+-> groupadd technical_shubham
+-> cat /etc/group
+
+
+* to add a user in our group
+
+-> gpasswd -a aman technical_shubham
+
+
+-					---------- some more commands --------------------
+
+a) tar: tar is used to combine multiple files into one.
+b) gzip: gzip is used to compress a file
+
+
+
+			------------------- commands to create a git repo ------------------	
+
+git init
+git add .
+git commit -m " This is my first commit "
+git remote add origin <url>
+git push -u origin master
+
+
+**** suppose i want to pull a file from git 
+
+git init
+git remote add origin <url>
+git pull -u origin master
+git log ---> to check all commit and their id
+git show <commit-ID>
+
+
+************ to create a new branch to work seperatly:
+
+git branch - > give list of all branches
+git branch <new-branch>
+git checkout new-branch-> to get inside your branch.
+
+git branch -d <branch-name>
+
+
+to merge a branch: git merge <branch-name>
+
+
+git stashing: temporary space : 
+git stash list
+git stash
+git stash apply stash@{0}
+git stash clear
+
+
+
+					-------------------- docker ----------------------------
+
+virtualization tool: used to create container and it basically works on the principle of .....develop, deplo and run.
+
+commands:
+
+1) docker images: list of all images
+docker run <image name >
+docker ps : running containers
+docker ps -a : all container that has been built till now.
+
+docker rmi <image-name> : to delete the image 
+docker rm <container-id>; to delete the container
+
+*************** How to create image using Dockerfile
+
+1) create a docker file: vi Dockerfile
+
+2) inside file:
+
+FROM openjdk:11
+WORKDIR /tmp
+COPY  build/libs/farmer-0.0.1-SNAPSHOT.jar /farmer-0.0.1-SNAPSHOT.jar
+
+# Run the web service on container startup.
+CMD java -jar farmer-0.0.1-SNAPSHOT.jar
+
+
+			------------------- 
+
+FROM ubuntu
+WORKDIR /tmp
+RUN echo "Shubham Snagwan" > /tmp/testfile
+
+
+			-------------------------  Commands to build image -----------------
+
+
+docker build -t <Image-ka -naam: version > .
+
+
+docker build -t my-new-image:v1
+
+
+docker ps -a (to see all containers)
+
+docker ps : running containers
+docker stop <container-id>
+docker run <conytainer-name> 
+
+
+to stop all running containers: docker stop $(docker ps -a -q)
+
+to run a container:
+
+docker run -it --name mycontainer /bin/bash
+
+
+to go inside container:
+
+docker attach <container-id>
+docker start
+
+
+port exposing:
+
+docker run -td --name ngix -p 80(host-port):80(container port) <image-name>
+
+to enter into a container:
+
+docker exec -it <container-id> /bin/nash
+
+---------------------------  kubernates commands --------------------------------------------------------
+
+
+
+

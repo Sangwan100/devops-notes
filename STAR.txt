@@ -1,0 +1,29 @@
+STAR:
+
+Situation: To deploy a two-tier application running on flask and MYSQL to be able to handle 10000 concurrent users with the best devops practices.
+
+Task: Dockerized the application and deploy it using kubernates cluster. and later deploy it using EKS for fault tolerance.
+
+Action:
+	- Used docker and docker-compose to containerize the application and pushed the image to dockerhub repository for versioning.
+	- Automated the kubernates cluster using minikube to deploy the application and later deployed the application on aws EKS.
+        - Ensured multi-node cluster for high availability  and deployment using load balancer.
+
+Result: Imporved scalability of the application to 10,000 concurrent users and reduced the downtime by 60% using AWS Elastic Kubernates Services (EKS).
+
+
+
+---------------------------------------------------   for django-todo-app ------------------------------------------------
+
+
+situation: to deploy an todo application made using django using CI/CD declarative pipeline on jenkins.
+
+Task:  Deployed the application using Aws EC-2 Instance and Building the image of application using Dockerfile and dockerizing the image and later deploy the application using docker-compose.
+
+Action:
+
+- Used Linux via AWS EC2 instance to perform the deployment.
+- Containerise the application using docker and pushed the image to dockerhub.
+- deployed the application using docker compose using jenkins.
+
+Result: 

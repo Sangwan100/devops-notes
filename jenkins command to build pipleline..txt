@@ -1,0 +1,60 @@
+jenkins command to build pipleline...
+
+
+pipeline {
+
+	agent any 
+	
+	stages {
+
+		stage ("clonning the code...){
+
+			steps {
+			
+				echo "Clonning the code..."
+				git url : "url link", branch : "master"
+
+				}
+			}
+
+
+		}
+
+		stage ("building the code... ") {
+		
+			steps {
+			
+			sh "docker build -t my-image:v1 ."
+
+}
+
+		stage ("pushing the code to dockerhub"){
+
+		steps {
+		
+			echo " pushing the code to dockerhub..."
+			withCredentials([usernamePassword(credentialsId : "dockerHubId", passwordVariable: "dockerHubPass", usernameVariable: 																		"dockerHubUser")]){
+			
+			sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
+			sh "docker push my-image ${env.dockerHubUser}/my-image:v1 
+                            
+				}"
+		   	
+			}
+
+		}
+             }
+
+		stage (""deploying the code...) {
+
+		steps {
+
+			echo "deploying the project"
+			sh "docker-compose down && docker-compose up"
+			
+                      }
+		}
+
+	   }
+
+	}

@@ -1,0 +1,103 @@
+Creatinig manifest/yml file for pod creation in kubernates:
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+	name: cluster-Pod
+	labels: 
+	   app: web
+spec:
+	conatiners:
+		name: container1
+		image: httpd
+
+
+---------------------------------  creating a deployment file in k8s ( farming-deployment.yml)-----------------------
+
+apiVersion: v2
+kind: Deployment
+metadata:
+	name: farming-app
+	label:
+	  name: farming-app
+spec:
+	containers:
+	    name: farming-container
+            image: sangwan100/farming-app	
+	    ports:
+		5000:5000
+     
+            name: Mysql
+	    image: Mysql:5.3
+	    environments:
+                 MYSQL_DB: ""farming-database
+		 MYSQL_USERNAME: "admin"
+		 MYSQL_PASSWORD: "1234"
+	    ports:
+		3306:3306
+
+-------------------------------------- deploying commands --------------------------
+		
+
+to execute this deployment file you need to run this command:
+
+	kubectl apply -f farming-deployment.yml
+
+	kubectl get deployments
+
+---------------------------------------------------------   creating a service file in k8s (farming-svc.yml) ----------------------------------
+
+ 
+
+apiVersion: v2
+kind: Service
+metadata:
+	name: farming-app
+	labels: 
+	 	name: farming-app
+spec:
+	ports:
+		port: 5000
+		targetPort: 5000
+	type:  LoadBalancer/ NodePort
+
+--------------------------------   service commands -----------------------------------------
+
+kubectl apply -f farming-service.yml
+
+kubectl get svc
+
+their you will get an ip address...which you can copy and paste in the browser to check 
+
+------------------------------------------------------- docker (how to create docker-compose file) --------------------------------------------
+
+
+version: '3'
+services:
+	farming:
+        container_name: farming-container
+        image: sangwan100/farming-app:v1
+        ports:
+	  - 8000:8000
+
+        Mysql:
+	  image: Mysql:5
+	  container_name: mysql-container
+	  ports:
+		- 3306:3306
+	  environment:
+		MYSQL_USERNAME: "admin"
+		MYSQL_PASSWORD: "abc123"
+		MYSQL_DB: "mysql-database"
+
+docker-compose down && docker-compose up
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+		
+
+
+ 
+	 
